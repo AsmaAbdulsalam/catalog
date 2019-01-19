@@ -1,0 +1,40 @@
+<html>
+<head>
+  <link rel=stylesheet type=text/css href="{{url_for('static',filename='styles.css')}}">
+</head>
+<body>
+
+<h1>{{bookstore.name}}</h1>
+
+<a href = '{{url_for('newItem', bookstore_id = bookstore.id) }}'>
+Create New Item</a>
+
+{% with messages= get_flashed_messages()%}
+{%if messages%}
+	<ul>
+	{% for message in messages %}
+		<li> {{message}}</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+{% endwith %}
+
+{% for i in items %}
+
+<div>
+
+<p>{{i.name}}</p>
+
+<p>{{i.description}}</p>
+
+<p> {{i.price}} </p>
+
+</div>
+  <a href='{{url_for('editItem',bookstore_id=bookstore.id,item_id=i.id)}}'> Edit</a>
+</br>
+  <a href='{{url_for('deleteItem',bookstore_id=bookstore.id,item_id=i.id)}}'> Delete</a>
+
+{% endfor %}
+</body>
+
+</html>

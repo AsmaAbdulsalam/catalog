@@ -1,0 +1,60 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+
+<h1> Edit Menu Item </h1>
+
+<form action="{{ url_for('editItem',bookstore_id = bookstore_id, item_id=item.id)}}" method = 'post'>
+
+<dl>
+	<dt>Name:</dt>
+		<dd><input type ='text' size='30' name='name' placeholder = '{{item.name }}'></dd>
+	<dt>Description:</dt>
+		<dd><textarea name = 'description' rows='5' cols='40' placeholder = '{{item.description }}'></textarea></dd>
+	<dt>Price:</dt>
+		<dd><input type = 'text' size = '8' name='price' placeholder = '{{item.price}}'></dd>
+	<dt>Course:</dt>
+
+	{% if item.course == 'Novel' %}
+		<dd><input type ='radio' name='category' value='Novel'checked >Novel</dd>
+	{%else%}
+	<dd><input type ='radio' name='category' value='Novel' >Novel</dd>
+    {% endif %}
+
+    {% if item.course == 'Journal' %}
+       <dd><input type ='radio' name='category' value='Journal' checked>Entree</dd>
+
+    {%else%}
+		<dd><input type ='radio' name='category' value='Journal'>Entree</dd>
+    {% endif %}
+
+	{% if item.course == 'Newspaper'%}
+		<dd><input type ='radio' name='category' value='Newspaper'checked >Newspaper</dd>
+
+	{% else %}
+	   <dd><input type ='radio' name='category' value='Newspaper'>Newspaper</dd>
+
+	{% endif %}
+
+
+	{%if item.course =='History'%}
+		<dd><input type ='radio' name='category' value='History'checked >History</dd>
+	{% else %}
+		<dd><input type ='radio' name='category' value='History'>History</dd>
+	{% endif %}
+
+
+
+
+
+</dl>
+
+
+<input type='submit' value='Edit'>
+
+<a href = '{{url_for('showBookstores')}}'> Cancel </a>
+</form>
+</body>
+</html>
